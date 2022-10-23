@@ -9,16 +9,21 @@ galleryRef.innerHTML = itemGallery;
 
 function createGalleryItems(galleryItems) {
     return galleryItems
-        .map((item) => {
-            return `<div class="gallery__item">
- <a class="gallery__link" href="${item.original}">
- <img class="gallery__image"
- srs="${item.preview}"
- data-sourse="${item.original}"
- alt="${item.description}"/>
- </a>
- </div>`}).join('');
-};
+    .map(
+      item =>
+        `<div class="gallery__item">
+    <a class="gallery__link" href="${item.original}">
+    <img
+      class="gallery__image"
+      src="${item.preview}"
+      data-source="${item.original}"
+      alt="${item.description}"
+    />
+  </a>
+</div>`
+    )
+    .join('');
+}
 
 galleryRef.addEventListener('click', imageClick);
 
@@ -30,14 +35,14 @@ function imageClick(evt) {
         return;
     } 
     const instance = basicLightbox.create(`
-    <img src="assets/images/image.png" width="800" height="600">
-`)
-
+    <img class= "original-img" src='${evt.target.dataset.source}' width="1280">
+`);
     instance.show();
+
     galleryRef.addEventListener('keydown', (evt) => {
         if (evt.code === 'Escape') {
             instance.close();
-        }
+            }
     });
 }
 function blockAction(evt) {

@@ -39,11 +39,14 @@ function imageClick(evt) {
 `);
     instance.show();
 
-    galleryRef.addEventListener('keydown', (evt) => {
+document.addEventListener('keydown', (evt) => {
         if (evt.code === 'Escape') {
             instance.close();
-            }
+        }
+    document.removeEventListener('keydown', (evt));
+    document.removeEventListener('click', imageClick);
     });
+   
 }
 function blockAction(evt) {
     evt.preventDefault();
